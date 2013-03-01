@@ -1,0 +1,5 @@
+require "pipeline_dealers/backend/base"
+require "pipeline_dealers/backend/http/backend"
+require "pipeline_dealers/backend/http/connection"
+require "pipeline_dealers/backend/http/collection"
+require "pipeline_dealers/backend/http/fetcher"
