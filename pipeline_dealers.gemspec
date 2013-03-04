@@ -7,10 +7,10 @@ Gem::Specification.new do |gem|
   gem.name          = "pipeline_dealers"
   gem.version       = PipelineDealers::VERSION
   gem.authors       = ["Maarten Hoogendoorn"]
-  gem.email         = ["maarten@moretea.nl"]
+  gem.email         = ["maarten@springest.com"]
   gem.description   = %q{API client for PipelineDeals}
   gem.summary       = gem.description
-  gem.homepage      = ""
+  gem.homepage      = "https://github.com/Springest/pipeline_dealers"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
@@ -27,6 +27,7 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "activesupport", "> 3.0.0"
   gem.add_development_dependency "simplecov"
   gem.add_development_dependency "debugger"
+  gem.add_development_dependency "rake"
 
 
   if RUBY_PLATFORM.include? "linux"
