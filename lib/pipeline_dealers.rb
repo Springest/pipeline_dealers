@@ -19,8 +19,6 @@ module PipelineDealers
   require "pipeline_dealers/model/person/custom_field"
   require "pipeline_dealers/model/note"
 
-
-
   require "pipeline_dealers/backend/base"
   require "pipeline_dealers/backend/http"
 end
