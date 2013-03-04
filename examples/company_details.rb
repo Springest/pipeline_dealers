@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
 require_relative "config"
-require "debugger"
 
 client = PipelineDealers::Client.new(api_key: YOUR_API_KEY)
 
