@@ -61,4 +61,4 @@ end
 
 The awesome people at
 
-[![Springest](http://static-1.cdnhub.nl/images/logo-springest.jpg "Logo springest.com")](http://www.springest.com/about-springest)
+[![Springest](http://static-1.cdnhub.nl/images/logo-springest.jpg "Logo springest.com")](http://www.springest.com/)
