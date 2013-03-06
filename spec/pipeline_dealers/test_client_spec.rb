@@ -28,6 +28,14 @@ module PipelineDealers
       it "is accessable from all instances" do
         other_client.companies.first.should == subject.companies.first
       end
+
+      context "when stored" do
+        let!(:company) { subject.companies.create(name: "Springest") }
+
+        it "makes it able to find it using .first" do
+          subject.companies.first.should == company
+        end
+      end
     end
 
     describe "destroying a model" do
