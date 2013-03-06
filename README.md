@@ -19,7 +19,7 @@ client = Pipelinedealers::Client.new(api_key: "z3kr3tp@zzw0rd")
 
 # Get all companies
 client.companies.all.each do |company|
- puts company.name
+  puts company.name
 end
 
 # Find company by ID
@@ -48,6 +48,7 @@ describe "MyClass" do
 end
 ```
 *Note:* Be sure to stub the client in your code. This only works if you use the same client reference in both the specs and your application.
+For more examples, see [these examples](examples/howto_rspec) and [how to run them](examples/howto_rspec/README.md)
 
 ## Contributing
 
