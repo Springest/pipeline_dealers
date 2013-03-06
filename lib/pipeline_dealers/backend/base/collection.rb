@@ -78,7 +78,7 @@ module PipelineDealers
             attributes = @options[:new_defaults].merge(attributes)
           end
 
-          model_klass.new(collection: self, record_new: true, attributes: attributes)
+          model_klass.new(collection: self, client: @client, record_new: true, attributes: attributes)
         end
 
         def create(attributes = {})

@@ -5,7 +5,7 @@ module PipelineDealers
         def find id
           status, result = @backend.connection.get(collection_url + "/#{id}.json", {})
           if status == 200
-            model_klass.new(collection: self, persisted: true, attributes: result)
+            model_klass.new(client: @client, collection: self, persisted: true, attributes: result)
           else
             raise Error::NotFound
           end

@@ -49,13 +49,13 @@ describe PipelineDealers::Model::HasCustomFields do
     }
   }
 
-  subject { ModelWithCustomFields.new(collection: collection, persisted: true, attributes: { "id" => 123, name: "Springest", custom_fields: custom_attributes} ) }
+  subject { ModelWithCustomFields.new(client: double("Client"), collection: collection, persisted: true, attributes: { "id" => 123, name: "Springest", custom_fields: custom_attributes} ) }
 
   context "reading custom fields" do
     before { client.stub(:custom_fields).and_return { PLD::CustomField::Collection.new(backend, klass: CustomModelField, cached: true, cache_key: :custom_field_cache_key) } }
 
     let(:custom_field_models) do
-       custom_field_labels.collect { |label| CustomModelField.new(collection: model_custom_fields, persisted: true, attributes: label["entries"]) }
+       custom_field_labels.collect { |label| CustomModelField.new(client: double("Client"), collection: model_custom_fields, persisted: true, attributes: label["entries"]) }
     end
 
     it "fetcheing the translation map is cache" do

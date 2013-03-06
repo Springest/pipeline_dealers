@@ -2,7 +2,8 @@ require "pipeline_dealers"
 
 module PipelineDealers
   class Model
-    describe CustomField do
+    describe CustomField, focus: true do
+      subject { described_class.new(client: double("Client"), collection: double("Client")) }
       let(:model) { nil }
 
       describe "decode" do
@@ -32,10 +33,14 @@ module PipelineDealers
 
         context "dropdown" do
           subject do
-            CustomField.new(attributes: {
-              "field_type" => "dropdown",
-              "custom_field_label_dropdown_entries" => [{"id" => 123, "value" => "My Item"}]
-            })
+            CustomField.new(
+              client: double("Client"),
+              collection: double("Collection"),
+              attributes: {
+                "field_type" => "dropdown",
+                "custom_field_label_dropdown_entries" => [{"id" => 123, "value" => "My Item"}]
+              }
+            )
           end
 
           it "decodes correctly" do
@@ -45,10 +50,14 @@ module PipelineDealers
 
         context "multi_select" do
           subject do
-            CustomField.new(attributes: {
-              "field_type" => "multi_select",
-              "custom_field_label_dropdown_entries" => [{"id" => 123, "value" => "My Item"}]
-            })
+            CustomField.new(
+              client: double("Client"),
+              collection: double("Collection"),
+              attributes: {
+                "field_type" => "multi_select",
+                "custom_field_label_dropdown_entries" => [{"id" => 123, "value" => "My Item"}]
+              }
+            )
           end
 
           it "decodes correctly" do
@@ -92,10 +101,14 @@ module PipelineDealers
 
         context "dropdown" do
           subject do
-            CustomField.new(attributes: {
-              "field_type" => "dropdown",
-              "custom_field_label_dropdown_entries" => [{"id" => 123, "value" => "My Item"}]
-            })
+            CustomField.new(
+              client: double("Client"),
+              collection: double("Collection"),
+              attributes: {
+                "field_type" => "dropdown",
+                "custom_field_label_dropdown_entries" => [{"id" => 123, "value" => "My Item"}]
+              }
+            )
           end
 
           it "encodes correctly" do
@@ -105,10 +118,14 @@ module PipelineDealers
 
         context "multi_select" do
           subject do
-            CustomField.new(attributes: {
-              "field_type" => "multi_select",
-              "custom_field_label_dropdown_entries" => [{"id" => 123, "value" => "My Item"}]
-            })
+            CustomField.new(
+              client: double("Client"),
+              collection: double("Collection"),
+              attributes: {
+                "field_type" => "multi_select",
+                "custom_field_label_dropdown_entries" => [{"id" => 123, "value" => "My Item"}]
+              }
+            )
           end
 
           it "encodes correctly" do

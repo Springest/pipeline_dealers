@@ -44,8 +44,8 @@ describe PipelineDealers::Backend::Http::Collection do
       ]
     end
 
-    let(:model_a) { TestModel.new(collection: subject, attributes: { name: "Maarten" }) }
-    let(:model_b) { TestModel.new(collection: subject, attributes: { name: "Hoogendoorn" }) }
+    let(:model_a) { TestModel.new(client: double("Client"), collection: subject, attributes: { name: "Maarten" }) }
+    let(:model_b) { TestModel.new(client: double("Client"), collection: subject, attributes: { name: "Hoogendoorn" }) }
 
     it "fetches the correct models" do
       connection.should_receive(:get).ordered.once.with(*expected_params_a).and_return(response_a)
@@ -84,7 +84,7 @@ describe PipelineDealers::Backend::Http::Collection do
       ]
     end
 
-    let(:model_a) { TestModel.new(collection: subject, attributes: { name: "Maarten"}) }
+    let(:model_a) { TestModel.new(client: double("client"), collection: subject, attributes: { name: "Maarten"}) }
 
     it "fetches only the resouces before the limit" do
       connection.should_receive(:get).once.with(*expected_params).and_return(response)

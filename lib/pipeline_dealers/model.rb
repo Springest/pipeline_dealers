@@ -50,8 +50,8 @@ module PipelineDealers
     def initialize(options = {})
       @options    = options
       @persisted  = options.delete(:persisted) == true
-      @client     = options.delete(:client)
-      @collection = options.delete(:collection)
+      @client     = options.delete(:client) || raise("No client given")
+      @collection = options.delete(:collection) || raise("No collection given")
 
       import_attributes! options.delete(:attributes)
     end

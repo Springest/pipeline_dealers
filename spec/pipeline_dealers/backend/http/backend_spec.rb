@@ -28,7 +28,7 @@ module PipelineDealers::Backend
      end
 
      context "that has been persisted" do
-       let(:model) { TestModel.new(collection: collection, persisted: true, attributes: { "id" => 123, name: "Springest"}) }
+       let(:model) { TestModel.new(client: double("Client"), collection: collection, persisted: true, attributes: { "id" => 123, name: "Springest"}) }
        after(:each) { model.save }
 
        it "uses the PUT method" do
