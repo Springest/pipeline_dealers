@@ -3,7 +3,8 @@ require "pipeline_dealers/test"
 
 module PipelineDealers
   describe "Client with TestBackend"  do
-    subject { TestClient.new }
+    let(:client) { TestClient.new }
+    subject { client }
 
     describe "storing a model" do
       describe "#create" do
@@ -73,6 +74,52 @@ module PipelineDealers
               subject.companies.first.custom_fields[:field].should == :value
             end
           end
+        end
+      end
+    end
+
+    describe "Notes on nested model" do
+      let!(:model) { subject.companies.create(name: "AWESOME") }
+
+      context "no notes added" do
+        it "has no notes" do
+          model.notes.all.to_a.should == []
+        end
+      end
+
+      context "after a note has been added" do
+        it "has one note" do
+          expect do
+            model.notes.create(content: "Note Content")
+          end.to change { model.notes.all.to_a.length }.by(1)
+        end
+      end
+    end
+
+    describe "selection options on collections" do
+      let!(:company_a) { client.companies.create(name: "Company A") }
+      let!(:company_b) { client.companies.create(name: "Company B") }
+
+      context "without any selections" do
+        subject { client.companies.all.to_a }
+        it { should =~ [company_a, company_b] }
+      end
+
+      context "with limit" do
+        subject { client.companies.limit(1).to_a }
+        its(:length) { should == 1 }
+        it { should =~ [company_a] }
+      end
+
+      context "filtered" do
+        context "on company a" do
+          subject { client.companies.where(id: company_a.id).all.to_a }
+          it { should =~ [company_a] }
+        end
+
+        context "on company b" do
+          subject { client.companies.where(id: company_b.id).all.to_a }
+          it { should =~ [company_b] }
         end
       end
     end

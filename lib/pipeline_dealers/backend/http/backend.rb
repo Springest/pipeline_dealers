@@ -14,6 +14,8 @@ module PipelineDealers
       end
 
       def save(collection, model)
+        super
+
         model_attr_name = model.class.attribute_name
 
         if model_attr_name.nil?

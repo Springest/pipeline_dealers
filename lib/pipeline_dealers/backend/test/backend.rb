@@ -1,8 +1,6 @@
-require_relative "collection"
-
 module PipelineDealers
   module Backend
-    class Test
+    class Test < Base
       attr_reader :items
 
       def cache key
@@ -11,7 +9,7 @@ module PipelineDealers
 
       def initialize(client)
         @client = client
-        @items = Hash.new([])
+        @items = Hash.new
         @last_id = 41
       end
 
@@ -20,14 +18,20 @@ module PipelineDealers
       end
 
       def save(collection, model)
+        super
+
+        @items[model.class] ||= []
         @items[model.class] << model
+
         if model.id.nil?
           model.send(:instance_variable_set, :@id, @last_id += 1)
         end
       end
 
       def destroy(collection, to_remove)
-        @items[to_remove.class].reject! { |model| model == to_remove }
+        if @items.has_key?(to_remove.class)
+          @items[to_remove.class].reject! { |model| model == to_remove }
+        end
       end
     end
   end

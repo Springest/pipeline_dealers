@@ -9,7 +9,7 @@ module PipelineDealers
         delegate :connection,     to: :backend
         delegate :collection_url, to: :model_klass
 
-        attr_reader :model_klass, :backend, :client
+        attr_reader :model_klass, :backend, :client, :options
 
         def initialize(backend, options)
           @options     = options
