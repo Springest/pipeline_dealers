@@ -11,3 +11,5 @@
   5. Lead statuses
   6. Predefined contacts tags
   7. Event categories
+
+- Add counting to all collections (per_page = 1, count nr pages)
