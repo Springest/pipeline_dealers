@@ -18,10 +18,6 @@ module PipelineDealers
           items.each &operation
         end
 
-        def collect &operation
-          items.collect &operation
-        end
-
         protected
 
         def items

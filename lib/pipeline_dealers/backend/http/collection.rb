@@ -16,16 +16,6 @@ module PipelineDealers
             operation.call(result)
           end
         end
-
-        def collect &operation
-          results = []
-
-          Fetcher.new(@backend.connection, self, model_klass, @options).each do |result|
-            results << operation.call(result)
-          end
-
-          results
-        end
       end
     end
   end

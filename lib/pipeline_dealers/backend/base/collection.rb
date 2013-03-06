@@ -34,6 +34,10 @@ module PipelineDealers
           end
         end
 
+        def each &block
+          raise "Should be implemented by backend!"
+        end
+
         def select &block
           results = []
 
@@ -47,7 +51,8 @@ module PipelineDealers
         def collect &operation
           results = []
 
-          self.each do
+          self.each do |model|
+            results << operation.call(model)
           end
 
           results
