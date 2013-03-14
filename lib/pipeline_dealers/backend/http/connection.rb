@@ -24,7 +24,15 @@ module PipelineDealers
         {get: :get_style, post: :post_style, put: :post_style, delete: :get_style}.each do |name, style|
           class_eval <<-RUBY
             def #{name} url, params = {}
-              request_#{style}(:#{name}, url, params)
+              while true # Try until we've got another response status than too many requests
+                status, response = request_#{style}(:#{name}, url, params)
+                if status == 429 # Too many requests? Sleep and try again
+                   sleep 1
+                   next
+                else
+                  return [status, response]
+                end
+              end
             end
           RUBY
         end
