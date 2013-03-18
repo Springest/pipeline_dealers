@@ -85,7 +85,9 @@ module PipelineDealers
     IGNORE_ATTRIBUTES_WHEN_SAVING = [:updated_at, :created_at]
     def save_attrs
       # Ignore some attributes
-      save_attrs = @attributes.reject { |k, v| IGNORE_ATTRIBUTES_WHEN_SAVING.member?(k) }
+      save_attrs = @attributes.reject do |name, value|
+        IGNORE_ATTRIBUTES_WHEN_SAVING.member?(name) || self.class.attributes[name.to_sym][:read_only] == true
+      end
 
       # And allow a model class to modify / edit attributes even further
       if respond_to?(:attributes_for_saving)
