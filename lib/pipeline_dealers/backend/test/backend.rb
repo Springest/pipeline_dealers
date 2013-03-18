@@ -20,10 +20,9 @@ module PipelineDealers
       def save(collection, model)
         super
 
-        @items[model.class] ||= []
-        @items[model.class] << model
-
         if model.id.nil?
+          @items[model.class] ||= []
+          @items[model.class] << model
           model.send(:instance_variable_set, :@id, @last_id += 1)
         end
       end

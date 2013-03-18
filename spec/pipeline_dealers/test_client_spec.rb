@@ -21,7 +21,12 @@ module PipelineDealers
         it "stores the model data" do
           expect { model.save }.to change(model, :id).from(nil).to(Integer)
         end
+
+        it "saving twice results in one item in the collection" do
+          expect { 2.times { model.save } }.to change(client.companies, :count).by(1)
+        end
       end
+
 
       let(:other_client) { TestClient.new }
 
