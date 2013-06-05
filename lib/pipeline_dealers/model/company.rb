@@ -31,6 +31,7 @@ module PipelineDealers
             :image_thumb_url,
             :updated_at,
             :total_pipeline,
+            :possible_notify_user_ids,
             :state,
         read_only: true
 

@@ -57,6 +57,7 @@ module PipelineDealers
             :company,
             :viewed_at,
             :total_pipeline,
+            :possible_notify_user_ids,
       read_only: true
     end
   end

@@ -6,6 +6,7 @@ module PipelineDealers
 
       attrs :deal_id,
             :person_id,
+            :user_id,
             :company_id,
             :title,
             :created_by_user_id,
@@ -20,6 +21,11 @@ module PipelineDealers
             :deal,
             :person,
             :company,
+            :user,
+            :user,
+            :comments,
+            :possible_notify_user_ids,
+            :notify_user_ids,
         read_only: true
 
       alias_method :person_cache,  :person
