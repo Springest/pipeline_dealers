@@ -3,6 +3,7 @@ require "pipeline_dealers"
 describe PipelineDealers::Model::HasCustomFields do
   class ModelWithCustomFields < PipelineDealers::Model
     include HasCustomFields
+
     self.collection_url = "models"
     self.attribute_name = "model"
     attrs :name

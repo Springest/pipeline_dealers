@@ -3,14 +3,22 @@ require "active_support/concern"
 module PipelineDealers
   class Model
     module HasCustomFields
-      extend ActiveSupport::Concern
-
-      included do
-        attr_reader :custom_fields
-      end
 
       CUSTOM_FIELD_PREFIX = "custom_label_"
       CUSTOM_FIELD_REGEX  = /#{CUSTOM_FIELD_PREFIX}(\d+)/
+
+      def custom_fields
+        @custom_fields
+      end
+
+      def process_attributes
+        @custom_fields = pld2human_fields(@attributes.delete(:custom_fields))
+      end
+
+
+      def attributes_for_saving attributes
+        attributes.merge("custom_fields" => human2pld_fields(@custom_fields))
+      end
 
       protected
 
@@ -22,13 +30,6 @@ module PipelineDealers
         end
       end
 
-      def process_attributes
-        @custom_fields = pld2human_fields(@attributes.delete(:custom_fields))
-      end
-
-      def attributes_for_saving attributes
-        attributes.merge("custom_fields" => human2pld_fields(@custom_fields))
-      end
 
       def pld2human_fields attributes
         attributes ||= {}
