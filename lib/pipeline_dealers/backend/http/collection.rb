@@ -7,7 +7,7 @@ module PipelineDealers
           if status == 200
             model_klass.new(client: @client, collection: self, persisted: true, attributes: result)
           else
-            raise Error::NotFound
+            raise Error::NotFound.new(model_klass, id)
           end
         end
 
