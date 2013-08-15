@@ -23,10 +23,10 @@ module PipelineDealers
           while not cursor.done
             status, result = @connection.get(@collection.collection_url + ".json", cursor.params)
 
-            if status == 200
-              yield_results(cursor, result, &block)
-            else
-              raise "Unexpected status! #{status.inspect}. Expected 200"
+            case status
+            when 200 then yield_results(cursor, result, &block)
+            when 406 then raise Erorr::AuthenticationError
+            else; raise "Unexpected status! #{status.inspect}. Expected 200"
             end
           end
         end
