@@ -3,8 +3,7 @@ module PipelineDealers
     class AuthenticationError < Error::Connection
       attr_reader :errors
 
-      def initialize(errors)
-        @errors = errors
+      def initialize
         @message = "Wrong API key"
       end
     end

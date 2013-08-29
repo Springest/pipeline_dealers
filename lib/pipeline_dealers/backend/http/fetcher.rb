@@ -25,7 +25,7 @@ module PipelineDealers
 
             case status
             when 200 then yield_results(cursor, result, &block)
-            when 406 then raise Erorr::AuthenticationError
+            when 406 then raise Error::AuthenticationError.new
             else; raise "Unexpected status! #{status.inspect}. Expected 200"
             end
           end
