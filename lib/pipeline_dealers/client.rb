@@ -19,5 +19,9 @@ module PipelineDealers
     def notes
       @notes ||= @backend.collection(client: self, model_klass: Model::Note)
     end
+
+    def custom_field_label_dropdown_entries
+      @dropdown_options ||= @backend.collection(client: self, model_klass: Model::CustomField::DropdownEntry, cache: true)
+    end
   end
 end

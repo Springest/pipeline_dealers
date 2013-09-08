@@ -1,17 +1,10 @@
 module PipelineDealers
   class Model
     class CustomField < Model
-      attr_reader :dropdown_entries
-
       attrs :name, 
             :field_type, 
-            :is_required, 
-            :custom_field_label_dropdown_entries,
+            :is_required,
         readonly: true
-
-      def process_attributes
-        @dropdown_entries = @attributes.delete(:custom_field_label_dropdown_entries)
-      end
 
       def decode(model, value)
         coder_for(model).decode(value)
@@ -28,13 +21,13 @@ module PipelineDealers
         if coder_klass.nil?
           raise "Unkown custom field type '#{field_type.inspect}'"
         else
-          return coder_klass.new(model, self)
+          return coder_klass.new(@client, model, self)
         end
       end
 
       class Coder
-        def initialize(model, field)
-          @model, @field = model, field
+        def initialize(client, model, field)
+          @client, @model, @field = client, model, field
         end
 
         class Identity < Coder
@@ -44,38 +37,22 @@ module PipelineDealers
 
         class Dropdown < Coder
           def encode value
-            find :value, of: value, and_return: :id
+            @client.custom_field_label_dropdown_entries.all.to_a.select { |opt| opt.custom_field_label_id == @field.id }.detect { |opt| opt.name == value }.id
           end
 
           def decode id
-            find :id, of: id, and_return: :value
-          end
-
-          protected
-
-          def find key, options
-            key        = key.to_s
-            value      = options[:of]
-            and_return = options[:and_return].to_s
-
-            entry = @field.dropdown_entries.find { |entry| entry[key] == value }
-            
-            if entry
-              return entry[and_return]
-            else
-              raise Error::InvalidAttributeValue.new(@model, @field.name, value)
-            end
+            @client.custom_field_label_dropdown_entries.all.to_a.detect { |opt| opt.id == id }.name
           end
         end
 
         class MultiSelect < Coder
           def encode values
-            coder = Dropdown.new(@model, @field)
+            coder = Dropdown.new(@client, @model, @field)
             values.collect { |value| coder.encode(value) }
           end
 
           def decode ids
-            coder = Dropdown.new(@model, @field)
+            coder = Dropdown.new(@client, @model, @field)
             ids.collect { |value| coder.decode(value) }
           end
         end

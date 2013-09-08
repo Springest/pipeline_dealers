@@ -10,6 +10,7 @@ module PipelineDealers
   # Base model
   require "pipeline_dealers/model"
   require "pipeline_dealers/model/custom_field"
+  require "pipeline_dealers/model/custom_field/dropdown_entry"
   require "pipeline_dealers/model/has_custom_fields"
 
   # Models
