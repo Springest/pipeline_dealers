@@ -4,6 +4,8 @@ module PipelineDealers
       attrs :name, 
             :field_type, 
             :is_required,
+            :created_at,
+            :updated_at,
         readonly: true
 
       def decode(model, value)
