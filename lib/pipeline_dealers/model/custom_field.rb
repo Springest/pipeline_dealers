@@ -6,6 +6,7 @@ module PipelineDealers
             :is_required,
             :created_at,
             :updated_at,
+            :custom_field_label_dropdown_entries,
         readonly: true
 
       def decode(model, value)
