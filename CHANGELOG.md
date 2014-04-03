@@ -1,3 +1,10 @@
+# 0.0.8
+- Add support for Float (currency)
+
+# 0.0.4 - 0.0.7
+- Preliminary support for custom fields
+- No idea :|
+
 # 0.0.3
 - Make the client retry when there were too many requests
 

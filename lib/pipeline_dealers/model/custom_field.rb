@@ -1,8 +1,8 @@
 module PipelineDealers
   class Model
     class CustomField < Model
-      attrs :name, 
-            :field_type, 
+      attrs :name,
+            :field_type,
             :is_required,
             :created_at,
             :updated_at,
@@ -39,22 +39,22 @@ module PipelineDealers
         end
 
         class Dropdown < Coder
-          def encode value
-            @client.custom_field_label_dropdown_entries.all.to_a.select { |opt| opt.custom_field_label_id == @field.id }.detect { |opt| opt.name == value }.id
+          def encode(value)
+            @client.custom_field_label_dropdown_entries.all.to_a.find(Proc.new{ OpenStruct.new }){ |opt| opt.custom_field_label_id == @field.id && opt.name == value }.id
           end
 
-          def decode id
-            @client.custom_field_label_dropdown_entries.all.to_a.detect { |opt| opt.id == id }.name
+          def decode(id)
+            @client.custom_field_label_dropdown_entries.all.to_a.find(Proc.new{ OpenStruct.new }){ |opt| opt.id == id }.name
           end
         end
 
         class MultiSelect < Coder
-          def encode values
+          def encode(values)
             coder = Dropdown.new(@client, @model, @field)
             values.collect { |value| coder.encode(value) }
           end
 
-          def decode ids
+          def decode(ids)
             coder = Dropdown.new(@client, @model, @field)
             ids.collect { |value| coder.decode(value) }
           end
