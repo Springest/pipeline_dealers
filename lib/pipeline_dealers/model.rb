@@ -1,5 +1,5 @@
-require "json"
-require "active_support/hash_with_indifferent_access"
+require 'json'
+require 'active_support/hash_with_indifferent_access'
 
 module PipelineDealers
   class Model
@@ -8,7 +8,7 @@ module PipelineDealers
       attr_accessor :attribute_name
       attr_reader :attributes
 
-      def attrs *attrs
+      def attrs(*attrs)
         if attrs.last.kind_of?(Hash)
           options = attrs.pop
         else
@@ -20,12 +20,12 @@ module PipelineDealers
         end
       end
 
-      def attr name, options = {}
+      def attr(name, options = {})
         @attributes ||= {}
         @attributes[name] = options
 
         # Getter
-        define_method name do
+        define_method(name) do
           @attributes[name.to_s]
         end
 
@@ -82,11 +82,11 @@ module PipelineDealers
       self
     end
 
-    IGNORE_ATTRIBUTES_WHEN_SAVING = [:updated_at, :created_at]
     def save_attrs
       # Ignore some attributes
+      ignore_attributes_when_saving = [:updated_at, :created_at]
       save_attrs = @attributes.reject do |name, value|
-        IGNORE_ATTRIBUTES_WHEN_SAVING.member?(name) || self.class.attributes[name.to_sym][:read_only] == true
+        ignore_attributes_when_saving.member?(name) || self.class.attributes[name.to_sym][:read_only] == true
       end
 
       # And allow a model class to modify / edit attributes even further
@@ -103,7 +103,7 @@ module PipelineDealers
 
     protected
 
-    def import_attributes! attributes
+    def import_attributes!(attributes)
       @attributes    = stringify_keys(attributes || {})
       @id            = @attributes.delete(:id)
 
@@ -125,7 +125,7 @@ module PipelineDealers
 
     # Recursively converts a hash structure with symbol keys to a hash
     # with indifferent keys
-    def stringify_keys original
+    def stringify_keys(original)
       result = HashWithIndifferentAccess.new
 
       original.each do |key, value|
@@ -146,7 +146,7 @@ module PipelineDealers
 
     def stringify_value value
       case value
-      when String, Fixnum, NilClass, FalseClass, TrueClass
+      when String, Fixnum, NilClass, FalseClass, TrueClass, Float
         return value
       when Hash, HashWithIndifferentAccess
         return stringify_keys(value)

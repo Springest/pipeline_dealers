@@ -6,8 +6,8 @@ require 'pipeline_dealers/version'
 Gem::Specification.new do |gem|
   gem.name          = "pipeline_dealers"
   gem.version       = PipelineDealers::VERSION
-  gem.authors       = ["Maarten Hoogendoorn"]
-  gem.email         = ["maarten@springest.com"]
+  gem.authors       = ["Maarten Hoogendoorn", "Springest"]
+  gem.email         = ["developers@springest.com"]
   gem.description   = %q{API client for PipelineDeals}
   gem.summary       = gem.description
   gem.homepage      = "https://github.com/Springest/pipeline_dealers"
