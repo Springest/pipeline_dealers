@@ -40,6 +40,7 @@ module PipelineDealers
             :twitter,
             :instant_message,
             :created_at
+            :updated_at
 
 
       # Read only
@@ -51,6 +52,7 @@ module PipelineDealers
             :lead_status,
             :lead_source,
             :image_thumb_url,
+            :image_mobile_url,
             :predefined_contacts_tags,
             :updated_at,
             :deals,
