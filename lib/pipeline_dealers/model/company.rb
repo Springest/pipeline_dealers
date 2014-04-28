@@ -27,8 +27,9 @@ module PipelineDealers
 
 
       # Read only
-      attrs :won_deals_total, 
+      attrs :won_deals_total,
             :image_thumb_url,
+            :image_mobile_url,
             :updated_at,
             :total_pipeline,
             :possible_notify_user_ids,

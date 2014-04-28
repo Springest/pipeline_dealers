@@ -1,3 +1,6 @@
+# 0.0.9
+- add new field (company/person).image_mobile_url
+
 # 0.0.8
 - Add support for Float (currency)
 
