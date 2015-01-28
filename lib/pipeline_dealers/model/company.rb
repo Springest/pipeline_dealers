@@ -20,11 +20,12 @@ module PipelineDealers
             :phone3,
             :phone4,
             :phone1_desc,
-            :phone2_desc, :phone3_desc,
+            :phone2_desc,
+            :phone3_desc,
             :phone4_desc,
             :created_at,
-            :import_id
-
+            :import_id,
+            :owner_id
 
       # Read only
       attrs :won_deals_total,
@@ -34,6 +35,7 @@ module PipelineDealers
             :total_pipeline,
             :possible_notify_user_ids,
             :state,
+            :owner,
         read_only: true
 
       def people
