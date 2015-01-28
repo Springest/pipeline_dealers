@@ -1,3 +1,6 @@
+# 0.0.10
+- add new field company.owner_id
+
 # 0.0.9
 - add new field (company/person).image_mobile_url
 
