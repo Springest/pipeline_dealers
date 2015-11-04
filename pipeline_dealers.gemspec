@@ -17,16 +17,16 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
 
-  gem.add_dependency "faraday", "~> 0.8.0"
-  gem.add_dependency "faraday_middleware", "~> 0.9.0"
-  gem.add_dependency "multi_json", "~> 1.0"
+  gem.add_dependency "faraday", "~> 0.9.2"
+  gem.add_dependency "faraday_middleware", "~> 0.10.0"
+  gem.add_dependency "multi_json", "~> 1.11.2"
 
-  gem.add_development_dependency "rspec", ">2"
+  gem.add_development_dependency "rspec", "~> 2"
   gem.add_development_dependency "guard-rspec"
   gem.add_development_dependency "reek"
   gem.add_development_dependency "activesupport", "> 3.0.0"
   gem.add_development_dependency "simplecov"
-  gem.add_development_dependency "debugger"
+  gem.add_development_dependency "byebug"
   gem.add_development_dependency "rake"
 
 
