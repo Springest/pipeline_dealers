@@ -1,3 +1,6 @@
+# 0.0.11
+- add new field custom_field_group_id to Company::CustomField
+
 # 0.0.10
 - add new field company.owner_id
 
