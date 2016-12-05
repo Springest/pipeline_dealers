@@ -7,6 +7,9 @@ module PipelineDealers
             :created_at,
             :updated_at,
             :custom_field_label_dropdown_entries,
+            :report_behavior,
+            :position,
+            :type,
         readonly: true
 
       def decode(model, value)
@@ -67,7 +70,7 @@ module PipelineDealers
           dropdown: Dropdown,
           multi_select: MultiSelect,
           multi_association: Identity # Does not work yet
-        } 
+        }
       end
     end
   end
