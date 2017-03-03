@@ -25,7 +25,9 @@ module PipelineDealers
             :phone4_desc,
             :created_at,
             :import_id,
-            :owner_id
+            :owner_id,
+            :milestones,
+            :is_customer?
 
       # Read only
       attrs :won_deals_total,
