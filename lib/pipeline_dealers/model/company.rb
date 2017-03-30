@@ -27,7 +27,8 @@ module PipelineDealers
             :import_id,
             :owner_id,
             :milestones,
-            :is_customer?
+            :is_customer?,
+            :is_customer
 
       # Read only
       attrs :won_deals_total,
