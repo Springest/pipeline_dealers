@@ -1,3 +1,6 @@
+# 0.0.12
+- add `is_sample` to Company
+
 # 0.0.11
 - add new field custom_field_group_id to Company::CustomField
 
