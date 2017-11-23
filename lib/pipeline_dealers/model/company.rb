@@ -29,7 +29,8 @@ module PipelineDealers
             :milestones,
             :is_customer?,
             :is_customer,
-            :is_sample
+            :is_sample,
+            :currency
 
       # Read only
       attrs :won_deals_total,
