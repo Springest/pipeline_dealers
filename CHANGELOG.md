@@ -1,3 +1,6 @@
+# 0.0.13
+- add `currency` to Company
+
 # 0.0.12
 - add `is_sample` to Company
 
