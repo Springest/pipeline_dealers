@@ -69,7 +69,8 @@ module PipelineDealers
           currency: Identity,
           dropdown: Dropdown,
           multi_select: MultiSelect,
-          multi_association: Identity # Does not work yet
+          date: Identity,
+          multi_association: Identity, # Does not work yet
         }
       end
     end
